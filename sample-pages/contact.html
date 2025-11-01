@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Sample Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #34495e;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #7f8c8d;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .contact-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .radio-item input[type="radio"] {
+            width: auto;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .contact-info {
+            background: #e8f4f8;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-value {
+            color: #7f8c8d;
+        }
+        
+        .alert {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .faq {
+            margin-top: 3rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .faq-answer {
+            padding: 1rem;
+            display: none;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            padding: 0.5rem 1rem;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background: #545b62;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav test-id="main-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Get In Touch</h1>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Use this page to test various form elements and interactions with Playwright.</p>
+        
+        <div class="alert" id="success-message">
+            <strong>Success!</strong> Your message has been sent successfully. We'll get back to you soon.
+        </div>
+        
+        <div class="contact-grid" test-id="contact-section">
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="testing">Testing Question</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="business">Business Partnership</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Preferred Contact Method</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="contact-email" name="contactMethod" value="email" checked>
+                                <label for="contact-email">Email</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="contact-phone" name="contactMethod" value="phone">
+                                <label for="contact-phone">Phone</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="contact-either" name="contactMethod" value="either">
+                                <label for="contact-either">Either</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Please describe your inquiry in detail..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                        <label for="newsletter">Subscribe to our newsletter for testing tips and updates</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">I agree to the Privacy Policy and Terms of Service *</label>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <button type="submit" class="btn" id="submit-btn">Send Message</button>
+                        <button type="reset" class="btn btn-secondary" id="reset-btn">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                
+                <div class="info-item">
+                    <div class="info-label">Email Address</div>
+                    <div class="info-value">contact@samplesite.com</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Phone Number</div>
+                    <div class="info-value">+1 (555) 123-4567</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Office Address</div>
+                    <div class="info-value">
+                        123 Sample Street<br>
+                        Testing City, TC 12345<br>
+                        United States
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Business Hours</div>
+                    <div class="info-value">
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+                
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link" data-platform="twitter">Twitter</a>
+                    <a href="#" class="social-link" data-platform="linkedin">LinkedIn</a>
+                    <a href="#" class="social-link" data-platform="github">GitHub</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question" data-faq="response-time">How quickly do you respond to inquiries?</div>
+                <div class="faq-answer">
+                    <p>We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call our phone number directly.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" data-faq="testing-help">Can you help with my testing setup?</div>
+                <div class="faq-answer">
+                    <p>Absolutely! We offer consulting services for Playwright test automation setup, best practices, and troubleshooting. Please select "Technical Support" in the subject dropdown.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" data-faq="customization">Do you offer customization services?</div>
+                <div class="faq-answer">
+                    <p>Yes, we can customize our testing framework to meet your specific needs. Contact us with your requirements and we'll provide a detailed proposal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple form validation and submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('success-message').style.display = 'block';
+            window.scrollTo(0, 0);
+            
+            // Reset form after 3 seconds (for demo purposes)
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('success-message').style.display = 'none';
+            }, 3000);
+        });
+        
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // Hide all answers
+                document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
+                
+                // Show clicked answer if it wasn't visible
+                if (!isVisible) {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

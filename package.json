@@ -1,0 +1,19 @@
+{
+  "name": "arthurs-playwright-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}

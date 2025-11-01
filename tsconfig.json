@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "node20",
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@pageObjects/*": ["./pageObjects/*"],
+      "@libs/*": ["./libs/*"],
+      "@data/*": ["./data/*"],
+      "*": ["./node_modules/*"],
+    },
+    "types": ["node", "@playwright/test"],
+    "outDir": "./dist",
+    "strict": false
+  },
+  "include": [
+    "data/**/*.ts",
+    "pageObjects/**/*.ts",
+    "libs/**/*.ts",
+    "tests/**/*.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
