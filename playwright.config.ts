@@ -1,5 +1,4 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
-import path, { resolve } from 'path';
+import { type PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   testDir: './tests',
